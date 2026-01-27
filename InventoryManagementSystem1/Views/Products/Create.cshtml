@@ -1,0 +1,57 @@
+﻿@model Product
+
+<h2>Create Product</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" class="form-control" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="QuantityInStock"></label>
+        <input asp-for="QuantityInStock" class="form-control" />
+        <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+    </div>
+
+    <!-- CATEGORY DROPDOWN -->
+    <div class="mb-3">
+        <label>Category</label>
+        <select asp-for="CategoryID"
+                asp-items="ViewBag.CategoryID"
+                class="form-control">
+            <option value="">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="CategoryID" class="text-danger"></span>
+    </div>
+
+    <!-- SUPPLIER DROPDOWN -->
+    <div class="mb-3">
+        <label>Supplier</label>
+        <select asp-for="SupplierID"
+                asp-items="ViewBag.SupplierID"
+                class="form-control">
+            <option value="">-- Select Supplier --</option>
+        </select>
+        <span asp-validation-for="SupplierID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

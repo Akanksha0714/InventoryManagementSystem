@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Supplier>
+
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<h2>Supplier List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">+ Add Supplier</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Supplier Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th style="width:200px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SupplierName</td>
+                <td>@item.ContactNumber</td>
+                <td>@item.Address</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SupplierID" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.SupplierID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

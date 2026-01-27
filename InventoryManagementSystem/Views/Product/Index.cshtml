@@ -1,0 +1,45 @@
+﻿@model IEnumerable<InventoryManagementSystem.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Inventory List";
+}
+
+<div class="container mt-4">
+    <h2>Product Inventory List</h2>
+    <hr />
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Product</a>
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.QuantityInStock)</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.QuantityInStock)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SupplierName)</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductID" class="btn btn-sm btn-info">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

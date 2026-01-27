@@ -1,0 +1,43 @@
+﻿@model InventoryManagementSystem1.Models.Category
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<h2 class="text-danger">Delete Category</h2>
+
+<hr />
+
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="mb-3">
+            Are you sure you want to delete this category?
+        </h5>
+
+        <div class="mb-3">
+            <strong>Category Name:</strong>
+            <span>@Model.CategoryName</span>
+        </div>
+
+        <form asp-action="Delete"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this category?');">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="CategoryID" />
+
+            <button type="submit" class="btn btn-danger">
+                Delete
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary ms-2">
+                Cancel
+            </a>
+        </form>
+
+    </div>
+</div>
+
+

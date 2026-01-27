@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Product List</h2>
+
+<!-- 🔍 SEARCH + FILTER FORM -->
+<form method="get" class="row g-3 mb-4 align-items-end">
+
+    <div class="col-md-4">
+        <input type="text"
+               name="searchString"
+               value="@Context.Request.Query["searchString"]"
+               class="form-control"
+               placeholder="Search product name..." />
+    </div>
+
+    <div class="col-md-3">
+        <select name="categoryId" class="form-control">
+            <option value="">All Categories</option>
+            @foreach (var cat in ViewBag.Categories)
+            {
+                <option value="@cat.CategoryID"
+                        selected="@(Context.Request.Query["categoryId"] == cat.CategoryID.ToString())">
+                    @cat.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="supplierId" class="form-control">
+            <option value="">All Suppliers</option>
+            @foreach (var sup in ViewBag.Suppliers)
+            {
+                <option value="@sup.SupplierID"
+                        selected="@(Context.Request.Query["supplierId"] == sup.SupplierID.ToString())">
+                    @sup.SupplierName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-2 d-flex gap-2">
+        <button type="submit" class="btn btn-primary btn-sm px-3">Search</button>
+        <a asp-action="Index" class="btn btn-secondary btn-sm px-3">Clear</a>
+    </div>
+
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">+ Add Product</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th style="width:180px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="6" class="text-center text-danger">
+                    No products found
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Category?.CategoryName</td>
+                    <td>@item.Supplier?.SupplierName</td>
+                    <td>@item.Price</td>
+                    <td>@item.QuantityInStock</td>
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@item.ProductID"
+                           class="btn btn-sm btn-warning">Edit</a>
+
+                        <form asp-action="Delete"
+                              asp-route-id="@item.ProductID"
+                              method="post"
+                              class="d-inline"
+                              onsubmit="return confirm('Are you sure you want to delete this product?');">
+
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

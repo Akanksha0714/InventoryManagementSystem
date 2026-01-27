@@ -1,0 +1,36 @@
+﻿@model Supplier
+
+@{
+    ViewData["Title"] = "Create Supplier";
+}
+
+<h2>Create Supplier</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="SupplierName" class="form-label"></label>
+        <input asp-for="SupplierName" class="form-control" />
+        <span asp-validation-for="SupplierName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ContactNumber" class="form-label"></label>
+        <input asp-for="ContactNumber" class="form-control" />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

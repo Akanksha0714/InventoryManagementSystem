@@ -1,0 +1,123 @@
+﻿/* Base font size */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Focus styles */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Page layout */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #d6e4ff; /* 💙 light blue background */
+}
+
+/* =========================
+   HOME PAGE STYLES
+========================= */
+
+/* Cursive main title */
+.cursive-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.6rem;
+    color: #0d47ff;
+    letter-spacing: 1px;
+}
+
+/* Welcome To text */
+.welcome-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1e60ff;
+}
+
+/* Subtitle */
+.subtitle-text {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    padding: 0.8rem 1rem;
+}
+
+    .navbar .nav-link {
+        transition: color 0.2s ease;
+    }
+
+        .navbar .nav-link:hover {
+            color: #e3edff;
+        }
+
+        .navbar .nav-link.active {
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+/* =========================
+   CARDS & TABLES
+========================= */
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+.table {
+    background-color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #eef4ff;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn-primary {
+    transition: background-color 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+    }
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    font-size: 0.9rem;
+    border-top: 1px solid #cddcff;
+    background-color: #eef4ff;
+}
+
+
