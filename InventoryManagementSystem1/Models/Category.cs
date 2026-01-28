@@ -8,7 +8,7 @@ namespace InventoryManagementSystem1.Models
             [Key]
             public Guid CategoryID { get; set; }
 
-            [Required]   // ⭐ IMPORTANT
+            [Required]   
             public string CategoryName { get; set; }
         
 

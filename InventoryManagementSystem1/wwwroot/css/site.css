@@ -26,12 +26,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #d6e4ff; /* 💙 light blue background */
+    background-color: #d6e4ff; 
 }
 
-/* =========================
-   HOME PAGE STYLES
-========================= */
+
 
 /* Cursive main title */
 .cursive-title {
@@ -54,9 +52,7 @@ body {
     color: #6c757d;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+
 
 .navbar {
     padding: 0.8rem 1rem;
@@ -75,9 +71,7 @@ body {
             text-decoration: underline;
         }
 
-/* =========================
-   CARDS & TABLES
-========================= */
+
 
 .card {
     background-color: #ffffff;
@@ -98,9 +92,7 @@ body {
     background-color: #eef4ff;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+
 
 .btn-primary {
     transition: background-color 0.2s ease;
@@ -110,9 +102,7 @@ body {
         background-color: #0b5ed7;
     }
 
-/* =========================
-   FOOTER
-========================= */
+
 
 .footer {
     font-size: 0.9rem;

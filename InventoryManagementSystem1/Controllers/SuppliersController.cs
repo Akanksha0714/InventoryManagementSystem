@@ -13,20 +13,17 @@ namespace InventoryManagementSystem.Controllers
             _context = context;
         }
 
-        // GET: Suppliers
         public async Task<IActionResult> Index()
         {
             var suppliers = await _context.Suppliers.ToListAsync();
             return View(suppliers);
         }
 
-        // GET: Suppliers/Create
+       
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: Suppliers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Supplier supplier)
@@ -37,7 +34,7 @@ namespace InventoryManagementSystem.Controllers
                 _context.Suppliers.Add(supplier);
                 await _context.SaveChangesAsync();
 
-                // ✅ SAVE SUCCESS POPUP
+               
                 TempData["success"] = "Supplier added successfully!";
 
                 return RedirectToAction(nameof(Index));
@@ -46,7 +43,6 @@ namespace InventoryManagementSystem.Controllers
             return View(supplier);
         }
 
-        // GET: Suppliers/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -59,7 +55,6 @@ namespace InventoryManagementSystem.Controllers
             return View(supplier);
         }
 
-        // POST: Suppliers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, Supplier supplier)
@@ -74,7 +69,7 @@ namespace InventoryManagementSystem.Controllers
                     _context.Update(supplier);
                     await _context.SaveChangesAsync();
 
-                    // ✅ EDIT SUCCESS POPUP
+         
                     TempData["success"] = "Supplier updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
@@ -89,7 +84,7 @@ namespace InventoryManagementSystem.Controllers
             return View(supplier);
         }
 
-        // GET: Suppliers/Delete/5
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -104,7 +99,7 @@ namespace InventoryManagementSystem.Controllers
             return View(supplier);
         }
 
-        // POST: Suppliers/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -115,7 +110,7 @@ namespace InventoryManagementSystem.Controllers
                 _context.Suppliers.Remove(supplier);
                 await _context.SaveChangesAsync();
 
-                // ✅ DELETE SUCCESS POPUP
+  
                 TempData["success"] = "Supplier deleted successfully!";
             }
             return RedirectToAction(nameof(Index));

@@ -20,7 +20,7 @@ public class Product
     [Required]
     public Guid SupplierID { get; set; }
 
-    // ✅ NO [Required] here
+    
     public Category? Category { get; set; }
     public Supplier? Supplier { get; set; }
 }

@@ -14,15 +14,13 @@ namespace InventoryManagementSystem1.Controllers
             _context = context;
         }
 
-        // =========================
-        // GET: Products
-        // =========================
+       
         public async Task<IActionResult> Index(
      string searchString,
      Guid? categoryId,
      Guid? supplierId)
         {
-            // dropdown data
+        
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Suppliers = _context.Suppliers.ToList();
 
@@ -31,21 +29,21 @@ namespace InventoryManagementSystem1.Controllers
                 .Include(p => p.Supplier)
                 .AsQueryable();
 
-            // 🔍 Search by product name
+         
             if (!string.IsNullOrEmpty(searchString))
             {
                 products = products.Where(p =>
                     p.ProductName.Contains(searchString));
             }
 
-            // 📂 Filter by category
+  
             if (categoryId.HasValue)
             {
                 products = products.Where(p =>
                     p.CategoryID == categoryId);
             }
 
-            // 🏭 Filter by supplier
+      
             if (supplierId.HasValue)
             {
                 products = products.Where(p =>
@@ -56,9 +54,7 @@ namespace InventoryManagementSystem1.Controllers
         }
 
 
-        // =========================
-        // GET: Products/Create
-        // =========================
+     
         public IActionResult Create()
         {
             ViewData["CategoryID"] =
@@ -72,16 +68,14 @@ namespace InventoryManagementSystem1.Controllers
 
 
 
-        // =========================
-        // POST: Products/Create
-        // =========================
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
         {
             if (!ModelState.IsValid)
             {
-                // 🔥 DEBUG: validation errors पाहण्यासाठी (dev time)
+                
                 foreach (var state in ModelState)
                 {
                     foreach (var error in state.Value.Errors)
@@ -97,13 +91,13 @@ namespace InventoryManagementSystem1.Controllers
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
 
-                // ✅ SUCCESS MESSAGE (THIS IS THE CHANGE)
+           
                 TempData["success"] = "Product added successfully!";
 
                 return RedirectToAction(nameof(Index));
             }
 
-            // dropdown data reload
+
             ViewData["CategoryID"] =
                 new SelectList(_context.Categories, "CategoryID", "CategoryName", product.CategoryID);
 
@@ -115,10 +109,6 @@ namespace InventoryManagementSystem1.Controllers
 
 
 
-
-        // =========================
-        // GET: Products/Edit/5
-        // =========================
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -137,9 +127,6 @@ namespace InventoryManagementSystem1.Controllers
             return View(product);
         }
 
-        // =========================
-        // POST: Products/Edit/5
-        // =========================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, Product product)
@@ -173,9 +160,7 @@ namespace InventoryManagementSystem1.Controllers
             return View(product);
         }
 
-        // =========================
-        // GET: Products/Delete/5
-        // =========================
+       
         public async Task<IActionResult> Delete(Guid id)
         {
             var product = await _context.Products
@@ -189,10 +174,6 @@ namespace InventoryManagementSystem1.Controllers
             return View(product);
         }
 
-
-        // =========================
-        // POST: Products/Delete/5
-        // =========================
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -211,9 +192,7 @@ namespace InventoryManagementSystem1.Controllers
         }
 
 
-        // =========================
-        // Helper Method
-        // =========================
+
         private bool ProductExists(Guid id)
         {
             return _context.Products.Any(e => e.ProductID == id);
